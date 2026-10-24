@@ -255,7 +255,7 @@ header>*{position:relative}
 
 .pb,.pl:hover .pb{background:#000;border:2px solid rgba(255,255,255,.4);box-shadow:none}
 .pl:hover .pb{border-color:#ff5000;transform:scale(1.05)}
-.tile .art .pb{font-size:clamp(.72rem,1.05vw,.95rem);left:.7rem;bottom:.7rem;border-width:2px;transition:transform .15s,border-color .15s;pointer-events:none}
+.tile .art .pb{font-size:clamp(1.08rem,1.575vw,1.425rem);padding:.4em .55em;left:.7rem;bottom:.7rem;border-width:2px;transition:transform .15s,border-color .15s;pointer-events:none}
 a.tile:hover .art .pb{border-color:#ff5000;transform:scale(1.05);transform-origin:left bottom}
 
 
@@ -432,7 +432,7 @@ function play(art,v,title){if(cur&&cur.art===art&&cur.id===v.id)return;stop();cu
 art.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURIComponent(v.id)+'?autoplay=1&rel=0'+(v.list?'&list='+encodeURIComponent(v.list):'')+(v.start?'&start='+v.start:'')+'" title="'+title.replace(/"/g,"&quot;")+'" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>'}
 function mod(e){return e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||(e.button&&e.button!==0)}
 var src=document.querySelector("#player .pb"),n=0;
-document.querySelectorAll("a.tile").forEach(function(a){var v=yt(a.getAttribute("href"));if(!v)return;var art=a.querySelector(".art");if(!art)return;if(src&&!art.querySelector(".pb")){var b=src.cloneNode(true);b.querySelector("b").textContent="Watch";var ic=b.querySelector("svg defs linearGradient");if(ic)ic.id="tg"+(++n);art.appendChild(b)}var h=a.querySelector("h3");var title=h?h.textContent:"Video";
+document.querySelectorAll("a.tile").forEach(function(a){var v=yt(a.getAttribute("href"));if(!v)return;var art=a.querySelector(".art");if(!art)return;if(src&&!art.querySelector(".pb")){var b=src.cloneNode(true);b.querySelector("b").remove();b.setAttribute("aria-hidden","true");var ic=b.querySelector("svg defs linearGradient");if(ic)ic.id="tg"+(++n);art.appendChild(b)}var h=a.querySelector("h3");var title=h?h.textContent:"Video";
 a.addEventListener("click",function(e){if(mod(e))return;e.preventDefault();play(art,v,title)})});
 document.querySelectorAll(".eps a").forEach(function(b){var v=yt(b.getAttribute("href"));if(!v||v.list)return;var wrap=b.closest(".eps").parentElement;var art=wrap&&wrap.querySelector(".art");if(!art)return;
 b.addEventListener("click",function(e){if(mod(e))return;e.preventDefault();play(art,v,b.textContent)})});
