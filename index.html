@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
+<style>html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 :root{--cobalt:#2336ff;--tomato:#ff5a36;--sun:#ffd23f;--mint:#7be0b5;--pink:#ff9ecb;--sky:#8cc8ff;--lilac:#b7a4ff;--ink:#0f1030;--paper:#fff;
 --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;--sans:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
 color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -245,10 +245,10 @@ header>*{position:relative}
 .pl:hover .pb{transform:scale(1.08);background:linear-gradient(180deg,#4f5edd 0%,#3846d9 24%,#2732cd 58%,#2222b2 84%,#1b1b8d 100%)}
 
 .heroreel{top:clamp(2.5rem,7vw,5.5rem)}
-.pb{width:auto;height:auto;font-size:clamp(.85rem,1.55vw,1.4rem);display:flex;align-items:center;gap:.5em;padding:.35em .45em .35em .9em;border-radius:999px;left:.9rem;bottom:.9rem;border-width:3px}
+.pb{width:max-content;height:auto;box-sizing:border-box;right:auto;font-size:clamp(.85rem,1.55vw,1.4rem);display:flex;align-items:center;gap:.5em;padding:.35em .45em .35em .9em;border-radius:999px;left:.9rem;bottom:.9rem;border-width:3px}
 .pb::after{display:none}
 .pb b{font:800 1em/1 var(--display);letter-spacing:-.01em;white-space:nowrap}
-.rp{position:relative;display:block;height:1.35em;aspect-ratio:728/628;flex:none}.rp svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}.pb img{position:static;height:100%;width:100%;display:block;inset:auto;object-fit:contain;filter:drop-shadow(.03em 0 0 #000) drop-shadow(-.03em 0 0 #000) drop-shadow(0 .03em 0 #000) drop-shadow(0 -.03em 0 #000)}
+.rp{position:relative;display:block;height:1.35em;width:1.5651em;flex:none;overflow:visible}.rp svg{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible}.pb img{position:absolute;inset:0;height:100%;width:100%;max-width:none;display:block;object-fit:contain;filter:drop-shadow(.03em 0 0 #000) drop-shadow(-.03em 0 0 #000) drop-shadow(0 .03em 0 #000) drop-shadow(0 -.03em 0 #000)}
 .pb i{position:relative;display:block;width:1.9em;height:1.9em;border-radius:50%;border:3px solid #000;background:inherit;flex:none}
 .pb i::after{content:"";position:absolute;left:55%;top:50%;transform:translate(-50%,-50%);border-left:.62em solid #000;border-top:.4em solid transparent;border-bottom:.4em solid transparent}
 @media (min-width:861px){.heroin{min-height:calc(clamp(2.5rem,7vw,5.5rem) + min(38.25vw,585px)*.5625 + clamp(2.5rem,5vw,4rem))}}
