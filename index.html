@@ -463,10 +463,13 @@ var reduced=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").ma
 var T=0,ph="hold",from=0,to=0,t0=0,dur=WIPE,paused=false,vis=false,running=false,last=0,wpv=0;
 function ease(x){return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2}
 function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+var fit=art.classList.contains("fit");
+function layout(tv,wp){var k,r,nx,x;for(k=0;k<N;k++){r=k===0?1:clamp(tv-(k-1),0,1);nx=k<N-1?clamp(tv-k,0,1):0;if(k===0&&wp!=null)r=wp;if(k===N-1&&wp!=null)nx=wp;x=r<1?-(1-r)*100:nx*100;im[k].style.transform="translateX("+x+"%)";im[k].style.zIndex=k+1}}
 function render(tv,wp){var k,r;
-for(k=0;k<N;k++){im[k].style.zIndex=k+1;if(k===0){im[0].style.clipPath="";continue}r=clamp(tv-(k-1),0,1);im[k].style.clipPath=r>=1?"":"inset(0 "+((1-r)*100)+"% 0 0)"}
+if(fit)layout(tv,wp);
+for(k=0;!fit&&k<N;k++){im[k].style.zIndex=k+1;if(k===0){im[0].style.clipPath="";continue}r=clamp(tv-(k-1),0,1);im[k].style.clipPath=r>=1?"":"inset(0 "+((1-r)*100)+"% 0 0)"}
 var d;
-if(wp!=null){im[0].style.zIndex=99;im[0].style.clipPath="inset(0 "+((1-wp)*100)+"% 0 0)";d=wp}
+if(wp!=null){if(!fit){im[0].style.zIndex=99;im[0].style.clipPath="inset(0 "+((1-wp)*100)+"% 0 0)"}d=wp}
 else{d=tv-Math.floor(tv);if(d<.001||d>.999)d=0}
 dv.style.left=(d*100)+"%";
 var a=(wp!=null&&wp>.5)?0:Math.round(tv);dots.forEach(function(e,k){e.className=k===a?"on":""})}
