@@ -410,7 +410,7 @@ art.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/'+encodeURICo
 function mod(e){return e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||(e.button&&e.button!==0)}
 document.querySelectorAll("a.tile").forEach(function(a){var v=yt(a.getAttribute("href"));if(!v)return;var art=a.querySelector(".art");if(!art)return;var h=a.querySelector("h3");var title=h?h.textContent:"Video";
 a.addEventListener("click",function(e){if(mod(e))return;e.preventDefault();play(art,v,title)})});
-document.querySelectorAll(".eps a").forEach(function(b){var v=yt(b.getAttribute("href"));if(!v)return;var wrap=b.closest(".eps").parentElement;var art=wrap&&wrap.querySelector(".art");if(!art)return;
+document.querySelectorAll(".eps a").forEach(function(b){var v=yt(b.getAttribute("href"));if(!v||v.list)return;var wrap=b.closest(".eps").parentElement;var art=wrap&&wrap.querySelector(".art");if(!art)return;
 b.addEventListener("click",function(e){if(mod(e))return;e.preventDefault();play(art,v,b.textContent)})});
 })();</script>
 </body>
