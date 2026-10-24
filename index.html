@@ -164,6 +164,8 @@ html,body{overflow-x:hidden}
 .csend:disabled{opacity:.7;cursor:wait}
 .cstat{margin:.8rem 0 0;min-height:1.3em;font:600 .88rem var(--sans)}
 .cstat a{color:#fff}
+.ccount{align-self:flex-end;font:600 .78rem/1 var(--sans);color:#9a9cb8;font-variant-numeric:tabular-nums}
+.ccount.near{color:#ffb199}
 @media (max-width:540px){.cgrid{grid-template-columns:1fr}}
 @media (max-width:860px){.contact .wrap{grid-template-columns:1fr;--cw:min(100%,420px);row-gap:2rem}.cleft{width:min(100%,420px)}}
 .contact{padding-bottom:0}
@@ -306,7 +308,7 @@ header>*{position:relative}
     <div class="cf"><label for="cf-ln"><span class="to">Last Name</span></label><input id="cf-ln" name="Last Name" type="text" placeholder="Last Name" autocomplete="family-name"></div>
     <div class="cf"><label for="cf-em"><span class="to">Email</span></label><input id="cf-em" name="email" type="email" placeholder="Email" autocomplete="email" required></div>
     <div class="cf"><label for="cf-ph"><span class="to">Phone</span></label><input id="cf-ph" name="Phone" type="tel" placeholder="Phone" autocomplete="tel"></div>
-    <div class="cf full"><label for="cf-ms"><span class="to">Message</span></label><textarea id="cf-ms" name="message" placeholder="Message" rows="4" maxlength="1000" required></textarea></div>
+    <div class="cf full"><label for="cf-ms"><span class="to">Message</span></label><textarea id="cf-ms" name="message" placeholder="Message" rows="4" maxlength="1000" aria-describedby="cf-cnt" required></textarea><span class="ccount" id="cf-cnt">0 / 1000</span></div>
    </div>
    <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0">
    <input type="hidden" name="_subject" value="New message from your portfolio website">
@@ -390,5 +392,6 @@ function fit(){h.style.fontSize="100px";h.style.display="inline-flex";h.style.wi
 fit();addEventListener("resize",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 var img=h.querySelector("img");if(img&&!img.complete)img.addEventListener("load",fit)})();
 </script>
+<script>(function(){var t=document.getElementById("cf-ms"),c=document.getElementById("cf-cnt");if(!t||!c)return;var m=+t.getAttribute("maxlength")||1000;function u(){var n=t.value.length;c.textContent=n+" / "+m;c.classList.toggle("near",n>=m*0.9)}t.addEventListener("input",u);if(t.form)t.form.addEventListener("reset",function(){setTimeout(u,0)});u()})();</script>
 </body>
 </html>
