@@ -371,7 +371,7 @@ fit();addEventListener("resize",fit);addEventListener("load",fit);if(document.fo
 function c(){r.style.top="";if(innerWidth<=860)return;var hb=h.getBoundingClientRect(),a=t.getBoundingClientRect().top-hb.top,b=p.getBoundingClientRect().bottom-hb.top,rh=r.getBoundingClientRect().height;r.style.top=(a+(b-a-rh)/2)+"px"}
 c();addEventListener("resize",function(){setTimeout(c,0)});addEventListener("load",c);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(c)})();
 </script>
-<script>var r=document.getElementById("rr");if(r){r.innerHTML+=r.innerHTML;}</script>
+<script>var r=document.getElementById("rr");if(r){var im=[].slice.call(r.children);im.forEach(function(e){var m=/^data:([^;,]+);base64,(.*)$/.exec(e.getAttribute("src")||"");if(!m)return;try{var b=atob(m[2]),u=new Uint8Array(b.length);for(var i=0;i<b.length;i++)u[i]=b.charCodeAt(i);e.src=URL.createObjectURL(new Blob([u],{type:m[1]}))}catch(x){}});im.forEach(function(e){r.appendChild(e.cloneNode(true))})}</script>
 <script>
 (function(){var p=document.getElementById("player");if(!p)return;var b=p.querySelector(".pl");
 b.addEventListener("click",function(){p.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/3zb73HOFxLk?autoplay=1&rel=0" title="Riley Vanderpost demo reel" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>';});})();
