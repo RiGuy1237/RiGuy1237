@@ -423,7 +423,7 @@ if(j&&(j.success===true||j.success==="true")){f.reset();say("Thanks! Your messag
 </script>
 <script>
 (function(){var box=document.querySelector(".cslogan"),h=box&&box.querySelector("h2");if(!h)return;
-function fit(){h.style.fontSize="100px";h.style.display="inline-flex";h.style.width="auto";var w=h.getBoundingClientRect().width;h.style.display="";h.style.width="";var cw=box.clientWidth;if(w>0&&cw>0)h.style.fontSize=(100*cw/w)+"px"}
+function fit(){h.style.fontSize="100px";h.style.display="inline-flex";h.style.width="auto";var w=h.getBoundingClientRect().width;h.style.display="";h.style.width="";var cw=box.clientWidth;if(w>0&&cw>0)h.style.fontSize=(100*cw/w*.93)+"px";h.style.justifyContent="center"}
 fit();addEventListener("resize",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 var img=h.querySelector("img");if(img&&!img.complete)img.addEventListener("load",fit)})();
 </script>
