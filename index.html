@@ -268,7 +268,7 @@ a.tile:hover .art .pb{border-color:#ff5000;transform:scale(1.05);transform-origi
 .tt{display:block}
 .tt::after{content:"";display:block;height:.09em;min-height:2px;margin-top:.12em;background:#fff;box-shadow:.05em .07em 0 #000}
 .h3ic{height:1.7em;width:auto;display:block;flex:none;margin:-.2em 0;-webkit-text-stroke:0;filter:drop-shadow(.03em 0 0 #000) drop-shadow(-.03em 0 0 #000) drop-shadow(0 .03em 0 #000) drop-shadow(0 -.03em 0 #000) drop-shadow(.04em .06em 0 #000) drop-shadow(.08em .12em .16em rgba(0,0,0,.85))}
-.art.cmp{position:relative;background:#000}.art.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.art.cmp.fit img{object-fit:contain}
+.art.cmp{position:relative;background:#000}.art.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}.art.cmp.fit img{object-fit:contain}.art.cmp .lyr{position:absolute;inset:0;overflow:hidden}.art.cmp.fit img.bgf{object-fit:cover;filter:blur(14px);transform:scale(1.25)}
 .art.cmp .cdv{position:absolute;top:0;bottom:0;left:0;width:4.5px;margin-left:-2.25px;background:#e0650b;box-shadow:0 0 0 1.5px #000,3px 2px 6px 1px rgba(0,0,0,.8),6px 4px 14px rgba(0,0,0,.55);pointer-events:none;z-index:50}
 .art.cmp .cdots{position:absolute;left:50%;bottom:2px;transform:translateX(-50%);display:flex;z-index:51}
 .art.cmp .cdots i{box-sizing:content-box;width:7px;height:7px;padding:6px;border-radius:50%;background:rgba(255,255,255,.45) content-box;cursor:pointer;transition:transform .12s}.art.cmp .cdots i.on{background:#fff content-box}.art.cmp .cdots i:hover{transform:scale(1.35)}
@@ -456,8 +456,8 @@ var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.que
 document.querySelectorAll(".strip").forEach(function(s){io.observe(s)})})();
 </script>
 <script>
-[].slice.call(document.querySelectorAll(".art.cmp")).forEach(function(art){var extra=+art.dataset.delay||0;
-var im=[].slice.call(art.querySelectorAll("img")),dv=art.querySelector(".cdv"),dots=[].slice.call(art.querySelectorAll(".cdots i")),N=im.length,MAX=N-1;
+[].slice.call(document.querySelectorAll(".art.cmp")).forEach(function(art){var extra=+art.dataset.delay||0;if(art.classList.contains("fit")){[].slice.call(art.querySelectorAll("img")).forEach(function(p){var l=document.createElement("span"),b=document.createElement("img");l.className="lyr";b.className="bgf";b.alt="";b.setAttribute("aria-hidden","true");b.src=p.src;p.parentNode.insertBefore(l,p);l.appendChild(b);l.appendChild(p)})}
+var im=[].filter.call(art.children,function(e){return e.tagName==="IMG"||e.className==="lyr"}),dv=art.querySelector(".cdv"),dots=[].slice.call(art.querySelectorAll(".cdots i")),N=im.length,MAX=N-1;
 var WIPE=2250,HOLD=850,HOLDEND=1300;
 var reduced=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
 var T=0,ph="hold",from=0,to=0,t0=0,dur=WIPE,paused=false,vis=false,running=false,last=0,wpv=0;
