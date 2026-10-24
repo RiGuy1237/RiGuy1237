@@ -68,6 +68,9 @@ h1{margin:0;font:800 clamp(2.8rem,7.2vw,7.2rem)/.88 var(--display);letter-spacin
 .reelrow{display:flex;gap:10px;width:max-content;animation:roll 120s linear infinite}
 .reelrow img{display:block;width:288px;height:162px;object-fit:cover;border-radius:4px;filter:contrast(1.06) saturate(1.08)}
 @keyframes roll{to{transform:translateX(-50%)}}
+.reelrow.off{visibility:hidden;animation-play-state:paused}
+@media (hover:none){.reelrow img{filter:none}}
+
 
 section{padding:clamp(3.5rem,8vw,6rem) 0 0}
 h2{margin:0 0 2rem;font:800 clamp(2.2rem,6vw,4.5rem)/.95 var(--display);letter-spacing:-.035em}
@@ -145,7 +148,7 @@ a.tile:hover .art{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)
 html,body{overflow-x:hidden}
 .mini{position:relative;z-index:3;height:56px;overflow:hidden;width:100vw;margin:-28px 0 -28px calc(50% - 50vw);box-shadow:0 0 10px 1px rgba(0,0,0,.55)}
 .mini .strip{width:400%;transform:scale(.25);transform-origin:0 0;box-shadow:none}
-.mini .reelrow{animation-duration:60s}
+.mini .reelrow{animation-duration:30s}
 @media (prefers-reduced-motion:reduce){.mini .reelrow{animation:none}}
 .tb,.to{display:inline-block;padding:.08em .06em .24em;margin:-.08em -.06em -.24em;color:transparent;background-blend-mode:overlay,normal;-webkit-background-clip:text;background-clip:text;}
 .tb{letter-spacing:-.025em;background:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27240%27 height=%27240%27%3E%3Cfilter id=%27n%27 x=%270%27 y=%270%27 width=%27100%25%27 height=%27100%25%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%27.035 .08%27 numOctaves=%274%27 seed=%277%27 stitchTiles=%27stitch%27/%3E%3CfeColorMatrix type=%27saturate%27 values=%270%27/%3E%3CfeComponentTransfer%3E%3CfeFuncR type=%27linear%27 slope=%271.5%27 intercept=%27-.28%27/%3E%3CfeFuncG type=%27linear%27 slope=%271.5%27 intercept=%27-.28%27/%3E%3CfeFuncB type=%27linear%27 slope=%271.5%27 intercept=%27-.28%27/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E") 0 0/240px 240px,linear-gradient(180deg,#4f5edd 0%,#3846d9 24%,#2732cd 58%,#2222b2 84%,#1b1b8d 100%);background-blend-mode:overlay,normal;filter:drop-shadow(.025em 0 0 #000) drop-shadow(-.025em 0 0 #000) drop-shadow(0 .025em 0 #000) drop-shadow(0 -.025em 0 #000) drop-shadow(.04em .05em 0 #000) drop-shadow(.08em .1em .18em rgba(0,0,0,.85))}
@@ -398,7 +401,7 @@ m();addEventListener("resize",m);addEventListener("load",m);if(document.fonts&&d
 </script>
 <script>
 (function(){var src=document.querySelector(".strip");if(!src)return;
-function mk(){var w=document.createElement("div");w.className="mini";w.setAttribute("aria-hidden","true");var c=src.cloneNode(true);var r=c.querySelector(".reelrow");if(r){r.removeAttribute("id");Array.prototype.slice.call(r.children).forEach(function(k){r.appendChild(k.cloneNode(true))})}w.appendChild(c);return w}
+function mk(){var w=document.createElement("div");w.className="mini";w.setAttribute("aria-hidden","true");var c=src.cloneNode(true);var r=c.querySelector(".reelrow");if(r){r.removeAttribute("id");}w.appendChild(c);return w}
 var a=document.getElementById("work"),m=document.querySelector("main"),b=document.querySelector(".about");
 if(a)a.after(mk());if(m)m.after(mk());if(b)b.after(mk())})();
 </script>
@@ -437,5 +440,10 @@ a.addEventListener("click",function(e){if(mod(e))return;e.preventDefault();play(
 document.querySelectorAll(".eps a").forEach(function(b){var v=yt(b.getAttribute("href"));if(!v||v.list)return;var wrap=b.closest(".eps").parentElement;var art=wrap&&wrap.querySelector(".art");if(!art)return;
 b.addEventListener("click",function(e){if(mod(e))return;e.preventDefault();play(art,v,b.textContent)})});
 })();</script>
+<script>
+(function(){var rows=document.querySelectorAll(".strip .reelrow");if(!rows.length||!("IntersectionObserver" in window))return;
+var io=new IntersectionObserver(function(es){es.forEach(function(e){e.target.querySelector(".reelrow").classList.toggle("off",!e.isIntersecting)})},{rootMargin:"60% 0px 60% 0px"});
+document.querySelectorAll(".strip").forEach(function(s){io.observe(s)})})();
+</script>
 </body>
 </html>
